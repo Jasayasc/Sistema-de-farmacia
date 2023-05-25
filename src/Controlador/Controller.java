@@ -1,6 +1,7 @@
 package Controlador;
 
 
+import Modelo.Connector;
 import Modelo.Model;
 import Vista.Login;
 import java.awt.event.ActionEvent;
@@ -15,10 +16,13 @@ public class Controller implements ActionListener{
 
     Login login;
     Model model;
+    Connector connector;
 
     public Controller() {
         login = new Login();
         model = new Model();
+        connector = new Connector();
+        
         //Connection con = model.Conectar();
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -51,7 +55,7 @@ public class Controller implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == login.getLoginBotton()) {
-            Connection con = model.Conectar();
+            Connection con = connector.getConnection();
             ResultSet resul = null;
             try {
                 String sql = "Select * from usuarios";

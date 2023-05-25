@@ -52,7 +52,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="E:\Documentos\NetBeansProjects\Sistema-de-farmacia\src\Recursos\bg-login.png"/>
+              <Image iconType="3" name="/Recursos/bg-login.png"/>
             </Property>
           </Properties>
           <Constraints>
@@ -137,9 +137,6 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtusername">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
               <FontInfo relative="true">
                 <Font component="txtusername" property="font" relativeSize="true" size="2"/>
@@ -175,7 +172,7 @@
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="E:\Documentos\NetBeansProjects\Sistema-de-farmacia\src\Recursos\icons8_user_20px_1.png"/>
+              <Image iconType="3" name="/Recursos/icons8_user_20px_1.png"/>
             </Property>
           </Properties>
           <Constraints>
@@ -202,9 +199,6 @@
         </Component>
         <Component class="javax.swing.JPasswordField" name="txtpassword">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
               <FontInfo relative="true">
                 <Font component="txtpassword" property="font" relativeSize="true" size="2"/>
@@ -240,7 +234,7 @@
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="E:\Documentos\NetBeansProjects\Sistema-de-farmacia\src\Recursos\icons8_invisible_20px_1.png"/>
+              <Image iconType="3" name="/Recursos/icons8_invisible_20px_1.png"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Hand Cursor"/>
@@ -259,7 +253,7 @@
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="E:\Documentos\NetBeansProjects\Sistema-de-farmacia\src\Recursos\icons8_eye_20px_1.png"/>
+              <Image iconType="3" name="/Recursos/icons8_eye_20px_1.png"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Hand Cursor"/>

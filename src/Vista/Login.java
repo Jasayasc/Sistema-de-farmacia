@@ -65,7 +65,7 @@ public class Login extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(500, 440));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("E:\\Documentos\\NetBeansProjects\\Sistema-de-farmacia\\src\\Recursos\\bg-login.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/bg-login.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 500, 310));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -96,7 +96,6 @@ public class Login extends javax.swing.JFrame {
         jLabel4.setText("Usuario");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 360, 20));
 
-        txtusername.setBackground(new java.awt.Color(255, 255, 255));
         txtusername.setFont(txtusername.getFont().deriveFont(txtusername.getFont().getSize()+2f));
         txtusername.setForeground(new java.awt.Color(255, 255, 255));
         txtusername.setBorder(null);
@@ -107,7 +106,7 @@ public class Login extends javax.swing.JFrame {
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 282, 50));
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setIcon(new javax.swing.ImageIcon("E:\\Documentos\\NetBeansProjects\\Sistema-de-farmacia\\src\\Recursos\\icons8_user_20px_1.png")); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/icons8_user_20px_1.png"))); // NOI18N
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, 30, 30));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
@@ -115,7 +114,6 @@ public class Login extends javax.swing.JFrame {
         jLabel7.setText("Contraseña");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 360, 20));
 
-        txtpassword.setBackground(new java.awt.Color(255, 255, 255));
         txtpassword.setFont(txtpassword.getFont().deriveFont(txtpassword.getFont().getSize()+2f));
         txtpassword.setForeground(new java.awt.Color(255, 255, 255));
         txtpassword.setBorder(null);
@@ -126,7 +124,7 @@ public class Login extends javax.swing.JFrame {
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 282, 60));
 
         disable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        disable.setIcon(new javax.swing.ImageIcon("E:\\Documentos\\NetBeansProjects\\Sistema-de-farmacia\\src\\Recursos\\icons8_invisible_20px_1.png")); // NOI18N
+        disable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/icons8_invisible_20px_1.png"))); // NOI18N
         disable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         disable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -136,7 +134,7 @@ public class Login extends javax.swing.JFrame {
         jPanel2.add(disable, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, 30, 30));
 
         show.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        show.setIcon(new javax.swing.ImageIcon("E:\\Documentos\\NetBeansProjects\\Sistema-de-farmacia\\src\\Recursos\\icons8_eye_20px_1.png")); // NOI18N
+        show.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/icons8_eye_20px_1.png"))); // NOI18N
         show.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         show.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
