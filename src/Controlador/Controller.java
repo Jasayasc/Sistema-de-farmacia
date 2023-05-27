@@ -1,28 +1,28 @@
 package Controlador;
 
-
+import DAO.DaoImplements;
+import DAO.UsuarioInterface;
 import Modelo.Connector;
 import Modelo.Model;
 import Vista.Login;
+import Vista.Vista_usuarios;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.ResultSet;
-import javax.swing.JOptionPane;
 
-public class Controller implements ActionListener{
+
+public class Controller implements ActionListener {
 
     Login login;
     Model model;
     Connector connector;
+    Vista_usuarios vistaUser;
 
     public Controller() {
         login = new Login();
+        vistaUser = new Vista_usuarios();
         model = new Model();
         connector = new Connector();
-        
+
         //Connection con = model.Conectar();
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -51,38 +51,24 @@ public class Controller implements ActionListener{
 
         login.getLoginBotton().addActionListener(this);
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == login.getLoginBotton()) {
-            Connection con = connector.getConnection();
-            ResultSet resul = null;
-            try {
-                String sql = "Select * from usuarios";
-                PreparedStatement st = con.prepareStatement(sql);
-                resul = st.executeQuery();
-
-                while (resul.next()) {
-                    String user = resul.getString("usuario");
-                    String pass = resul.getString("contraseña");
-
-                    char[] arrayC;
-                    arrayC = login.getTxtpassword().getPassword();
-                    String password = new String(arrayC);
-
-                    if (login.getTxtusername().getText() == user && password == pass) {
-                        JOptionPane.showMessageDialog(login, "Ingreso con exito :D");
-                        /*sql = "Select nombre from datos where user = "+login.getTxtusername().getText();
-                        st= con.prepareStatement(sql);
-                        resul = st.executeQuery();
-                        System.out.println("Bienvenido "+ resul.getString("nombre"));*/
-                        break;
-                    }
-                }
-
-            } catch (SQLException ex) {
-                System.out.println("Error: " + ex.getMessage());
-            }
+              UsuarioInterface ui = new DaoImplements();
+              
+              String user;
+              String pass;
+              
+             user = login.getTxtusername().getText();
+             char[] arrayC = login.getTxtpassword().getPassword();
+             pass = new String(arrayC);
+              
+              if(ui.LoginUser(user, pass)){
+                  login.setVisible(false);
+                  vistaUser.setVisible(true);
+              }
         }
+
     }
 }
