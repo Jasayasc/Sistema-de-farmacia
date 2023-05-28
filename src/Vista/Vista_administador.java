@@ -19,6 +19,7 @@ public class Vista_administador extends javax.swing.JFrame {
     //Nombre tabla
     public Vista_administador() {
         initComponents();
+         setLocationRelativeTo(null);
         String[] titulos = new String[]{"ID","Nombre medicamento","Cantidad","Costo","Requiere receta"};
         dtm.setColumnIdentifiers(titulos);
         Tabla_productos_admin.setModel(dtm);

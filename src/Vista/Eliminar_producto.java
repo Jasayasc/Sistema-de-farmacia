@@ -17,6 +17,7 @@ public class Eliminar_producto extends javax.swing.JFrame {
      */
     public Eliminar_producto() {
         initComponents();
+         setLocationRelativeTo(null);
         String[] titulos = new String[]{"ID","Nombre medicamento","Cantidad","Costo","Requiere receta"};
         dtm.setColumnIdentifiers(titulos);
         Tabla_eliminar.setModel(dtm);

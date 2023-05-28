@@ -19,18 +19,16 @@ public class DaoImplements implements ClienteInterface, MedicamentoInterface, Of
 
     @Override
     public void createClient(ClientModel cliente) {
-        String sql = "insert into cliente VALUES (?,?,?,?,?,?,?)";
+        String sql = "insert into cliente VALUES (?,?,?,?)";
         try {
             PreparedStatement statement;
             statement = connector.getConnection().prepareStatement(sql);
 
             statement.setString(1, cliente.getDocumento() + "");
             statement.setString(2, cliente.getNombre());
-            statement.setString(3, cliente.getApellido());
-            statement.setString(4, cliente.getDireccion());
-            statement.setString(5, cliente.getCorreo());
-            statement.setString(6, cliente.getTelefono());
-            statement.setString(67, 0 + "");
+            statement.setString(3, cliente.getDireccion());
+            statement.setString(4, cliente.getCorreo());
+            
 
             statement.executeUpdate();
 
@@ -53,8 +51,8 @@ public class DaoImplements implements ClienteInterface, MedicamentoInterface, Of
             resultSet = statement.executeQuery(sql);
 
             while (resultSet.next()) {
-                clientes.add(new ClientModel(resultSet.getInt("documento"), resultSet.getString("nombre"), resultSet.getString("apellido"),
-                        resultSet.getString("direccion"), resultSet.getString("correo"), resultSet.getString("telefono"), resultSet.getInt("nroCompras")));
+                clientes.add(new ClientModel(resultSet.getInt("documento"), resultSet.getString("nombre"),
+                        resultSet.getString("direccion"), resultSet.getString("correo")));
             }
 
             resultSet.close();
@@ -80,7 +78,7 @@ public class DaoImplements implements ClienteInterface, MedicamentoInterface, Of
             while (resultSet.next()) {
 
                 medicamentos.add(new MedicamentoModel(resultSet.getInt("id"), resultSet.getString("nombre"), resultSet.getInt("cantidad"),
-                        resultSet.getInt("precio"), resultSet.getInt("receta")));
+                        resultSet.getInt("precio"), resultSet.getString("receta")));
 
             }
 
@@ -104,7 +102,7 @@ public class DaoImplements implements ClienteInterface, MedicamentoInterface, Of
             statement.setString(2, medicamento.getNombre());
             statement.setString(3, medicamento.getCantidad() + "");
             statement.setString(4, medicamento.getPrecio() + "");
-            statement.setString(5, medicamento.getReceta() + "");
+            statement.setString(5, medicamento.getReceta());
 
             statement.executeUpdate();
 
@@ -146,7 +144,7 @@ public class DaoImplements implements ClienteInterface, MedicamentoInterface, Of
             statement.setString(1, medicamento.getNombre());
             statement.setString(2, medicamento.getCantidad() + "");
             statement.setString(3, medicamento.getPrecio() + "");
-            statement.setString(4, medicamento.getReceta() + "");
+            statement.setString(4, medicamento.getReceta());
 
             statement.setString(5, medicamento.getId() + "");
 
@@ -282,17 +280,17 @@ public class DaoImplements implements ClienteInterface, MedicamentoInterface, Of
 
     @Override
     public void createUser(UserModel user) {
-        String sql = "insert into userde values (?,?,?,?,?)";
+        String sql = "insert into user (documento,usuario,contraseña,permiso) values (?,?,?,?)";
 
         try {
 
             PreparedStatement statement;
             statement = connector.getConnection().prepareStatement(sql);
 
-            statement.setString(1, user.getId() + "");
-            statement.setString(2, user.getDocumento() + "");
-            statement.setString(3, user.getUser()+ "");
-            statement.setString(4, user.getPass()+ "");
+            
+            statement.setString(1, user.getDocumento() + "");
+            statement.setString(2, user.getUser());
+            statement.setString(3, user.getPass());
             statement.setString(4, user.isPermiso()+ "");
 
             statement.executeUpdate();

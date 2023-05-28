@@ -1,15 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Vista;
 
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Furotsuki
- */
+
 public class Vista_usuarios extends javax.swing.JFrame {
     
     DefaultTableModel dtm = new DefaultTableModel();
@@ -21,6 +15,7 @@ public class Vista_usuarios extends javax.swing.JFrame {
     //Nombre tabla
     public Vista_usuarios() {
         initComponents();
+         setLocationRelativeTo(null);
         String[] titulos = new String[]{"ID","Nombre","Cantidad","Costo","Requiere receta"};
         dtm.setColumnIdentifiers(titulos);
         Tabla_productos.setModel(dtm);

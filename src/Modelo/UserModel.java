@@ -2,22 +2,17 @@
 package Modelo;
 
 public class UserModel {
-    int id;
     int documento;
     String user;
     String pass;
     boolean permiso;
 
-    public UserModel(int id, int documento, String user, String pass, boolean permiso) {
-        this.id = id;
+    public UserModel( int documento, String user, String pass, boolean permiso) {
+        
         this.documento = documento;
         this.user = user;
         this.pass = pass;
         this.permiso = permiso;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public int getDocumento() {

@@ -6,9 +6,9 @@ public class MedicamentoModel {
     String nombre;
     int cantidad;
     int precio;
-    int receta;
+    String receta;
 
-    public MedicamentoModel(int id, String nombre, int cantidad, int precio, int receta) {
+    public MedicamentoModel(int id, String nombre, int cantidad, int precio, String receta) {
         this.id = id;
         this.nombre = nombre;
         this.cantidad = cantidad;
@@ -32,7 +32,7 @@ public class MedicamentoModel {
         return precio;
     }
 
-    public int getReceta() {
+    public String getReceta() {
         return receta;
     }
     
