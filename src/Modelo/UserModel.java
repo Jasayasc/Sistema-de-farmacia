@@ -1,7 +1,7 @@
 
 package Modelo;
 
-public class UserModel {
+public class UserModel implements Usuario {
     int documento;
     String user;
     String pass;
@@ -15,20 +15,27 @@ public class UserModel {
         this.permiso = permiso;
     }
 
-    public int getDocumento() {
-        return documento;
+
+
+    @Override
+    public int getDocument() {
+       return documento;
     }
 
+    @Override
     public String getUser() {
         return user;
     }
 
+    @Override
     public String getPass() {
         return pass;
     }
 
+    @Override
     public boolean isPermiso() {
         return permiso;
     }
+
     
 }

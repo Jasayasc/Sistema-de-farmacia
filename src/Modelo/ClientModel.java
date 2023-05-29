@@ -1,6 +1,8 @@
 package Modelo;
 
-public class ClientModel {
+public class ClientModel implements Clienteinter {
+
+   
 
     int documento;
     String nombre;
@@ -14,20 +16,27 @@ public class ClientModel {
         this.correo = correo;
        
     }
+    
 
-    public int getDocumento() {
+
+
+
+    @Override
+    public int getDocument() {
         return documento;
     }
 
+    @Override
     public String getNombre() {
-        return nombre;
+        return  nombre;
     }
 
-
+    @Override
     public String getDireccion() {
         return direccion;
     }
 
+    @Override
     public String getCorreo() {
         return correo;
     }

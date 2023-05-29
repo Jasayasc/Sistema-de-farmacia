@@ -1,7 +1,7 @@
 
 package Modelo;
 
-public class VentaModel {
+public class VentaModel implements Venta_interface{
     int id;
     int id_prod;
     int documento;
@@ -16,24 +16,31 @@ public class VentaModel {
         this.valor = valor;
     }
 
+    @Override
     public int getId() {
-        return id;
+       return id;
     }
 
+    @Override
     public int getId_prod() {
         return id_prod;
     }
 
+    @Override
     public int getDocumento() {
         return documento;
     }
 
+    @Override
     public int getCantidad() {
         return cantidad;
     }
 
+    @Override
     public int getValor() {
         return valor;
     }
+
+
     
 }
