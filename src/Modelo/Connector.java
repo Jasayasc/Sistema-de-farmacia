@@ -6,7 +6,7 @@ package Modelo;
 
 import java.sql.*;
 
-public class Connector {
+public class Connector implements Connector_interface{
     private String userDatabase = "root";
     private String passwordDatabase = "12345";
     private String nameDatabase = "farmacia";
@@ -27,7 +27,10 @@ public class Connector {
         }
     }
 
+    @Override
     public Connection getConnection() {
-        return connection;
-    } 
+            return connection;
+    }
+
+    
 }

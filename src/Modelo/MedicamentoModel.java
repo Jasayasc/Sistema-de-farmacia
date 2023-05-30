@@ -1,7 +1,7 @@
 
 package Modelo;
 
-public class MedicamentoModel {
+public class MedicamentoModel implements Medicamento_interface{
     int id;
     String nombre;
     int cantidad;
@@ -16,25 +16,32 @@ public class MedicamentoModel {
         this.receta = receta;
     }
 
+    @Override
     public int getId() {
         return id;
     }
 
+    @Override
     public String getNombre() {
-        return nombre;
+       return nombre;
     }
 
+    @Override
     public int getCantidad() {
         return cantidad;
     }
 
+    @Override
     public int getPrecio() {
-        return precio;
+       return precio;
     }
 
+    @Override
     public String getReceta() {
         return receta;
     }
+
+
     
     
 }

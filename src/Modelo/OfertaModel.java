@@ -2,7 +2,7 @@
 package Modelo;
 
 
-public class OfertaModel {
+public class OfertaModel implements Ofertas_interface{
     int id;
     int id_prod;
     float porcentaje;
@@ -15,20 +15,26 @@ public class OfertaModel {
         this.dias = dias;
     }
 
+    @Override
     public int getId() {
         return id;
     }
 
+    @Override
     public int getId_prod() {
         return id_prod;
     }
 
+    @Override
     public float getPorcentaje() {
-        return porcentaje;
+        return  porcentaje;
     }
 
+    @Override
     public int getDias() {
         return dias;
     }
+
+
     
 }
