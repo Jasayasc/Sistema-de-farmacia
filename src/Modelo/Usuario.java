@@ -10,7 +10,7 @@ package Modelo;
  */
 public interface Usuario {
 
-    int getDocument();
+    int getDocumento();
 
     String getUser();
 

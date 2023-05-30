@@ -18,7 +18,7 @@ public class UserModel implements Usuario {
 
 
     @Override
-    public int getDocument() {
+    public int getDocumento() {
        return documento;
     }
 

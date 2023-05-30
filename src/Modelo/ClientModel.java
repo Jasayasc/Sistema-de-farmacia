@@ -22,7 +22,7 @@ public class ClientModel implements Clienteinter {
 
 
     @Override
-    public int getDocument() {
+    public int getDocumento() {
         return documento;
     }
 

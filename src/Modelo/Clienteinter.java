@@ -10,7 +10,7 @@ package Modelo;
  */
 public interface Clienteinter {
 
-    int getDocument();
+    int getDocumento();
 
     String getNombre();
 
