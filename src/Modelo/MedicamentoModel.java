@@ -8,6 +8,10 @@ public class MedicamentoModel implements Medicamento_interface{
     int precio;
     String receta;
 
+    public MedicamentoModel(){
+        
+    }
+    
     public MedicamentoModel(int id, String nombre, int cantidad, int precio, String receta) {
         this.id = id;
         this.nombre = nombre;

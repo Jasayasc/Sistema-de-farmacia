@@ -168,10 +168,6 @@ public class Vista_usuarios extends javax.swing.JFrame {
                 .addGap(44, 44, 44)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -179,17 +175,22 @@ public class Vista_usuarios extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(68, 68, 68)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
-                                .addGap(18, 18, 18)
-                                .addComponent(precio, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(48, 48, 48)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(precio, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(receta, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cantLlevar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addGap(30, 30, 30))
+                                    .addComponent(cantLlevar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(receta, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -243,10 +244,10 @@ public class Vista_usuarios extends javax.swing.JFrame {
         jMenuBar1.setForeground(new java.awt.Color(0, 51, 255));
 
         jMenu1.setText("Administrador");
-        jMenu1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenu1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         admin.setText("Vista administrador");
-        admin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        admin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         admin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 adminActionPerformed(evt);
@@ -283,30 +284,31 @@ public class Vista_usuarios extends javax.swing.JFrame {
 
     private void comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxActionPerformed
         // TODO add your handling code here:
-        for (MedicamentoModel medicamento : medicamentos) {
-            cantidad.setText(medicamento.getCantidad() + "");
-            precio.setText(medicamento.getPrecio() + "");
-            receta.setText(medicamento.getReceta());
-        }
+        int i = comboBox.getSelectedIndex();
+        MedicamentoModel medicamento = medicamentos.get(i);
+        cantidad.setText(medicamento.getCantidad() + "");
+        precio.setText(medicamento.getPrecio() + "");
+        receta.setText(medicamento.getReceta());
+
     }//GEN-LAST:event_comboBoxActionPerformed
 
     private void añadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añadirActionPerformed
         // TODO add your handling code here:
-        MedicamentoModel mm = mi.findByNombre(comboBox.getSelectedItem().toString());
+        String nombre = comboBox.getSelectedItem().toString();
+        System.out.println(nombre);
+        MedicamentoModel mm = mi.findByNombre(nombre);
         int cantidadLLevar = Integer.parseInt(cantLlevar.getText());
-        int valor = mm.getPrecio()*cantidadLLevar;
-        ventas.add(new VentaModel(0,mm.getId(),mm.getNombre(),cantidadLLevar,valor));
+        int valor = mm.getPrecio() * cantidadLLevar;
+        ventas.add(new VentaModel(0, mm.getId(), mm.getNombre(), cantidadLLevar, valor));
         int valorTotal = Integer.parseInt(total1.getText()) + valor;
-        total1.setText(valorTotal+"");
-        cantLlevar.setText("");
+        total1.setText(valorTotal + "");
+        cantLlevar.setText(String.valueOf(0));
     }//GEN-LAST:event_añadirActionPerformed
 
     public ArrayList<VentaModel> getVentas() {
         return ventas;
     }
 
-    
-    
     /**
      * @param args the command line arguments
      */
@@ -360,7 +362,6 @@ public class Vista_usuarios extends javax.swing.JFrame {
         return cantLlevar;
     }
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem admin;

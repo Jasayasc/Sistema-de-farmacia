@@ -12,9 +12,12 @@ import java.sql.*;
 public class DaoImplements implements ClienteInterface, MedicamentoInterface, UsuarioInterface, VentaInterface, AdmiInterface {
 
     Connector connector;
+    MedicamentoModel mm;
+    
 
     public DaoImplements() {
         this.connector = new Connector();
+        this.mm = new MedicamentoModel();
     }
 
     @Override
@@ -30,7 +33,7 @@ public class DaoImplements implements ClienteInterface, MedicamentoInterface, Us
             statement.setString(4, cliente.getCorreo());
             statement.executeUpdate();
             statement.close();
-            connector.getConnection().close();
+            //connector.getConnection().close();
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
@@ -54,7 +57,7 @@ public class DaoImplements implements ClienteInterface, MedicamentoInterface, Us
 
             resultSet.close();
             statement.close();
-            connector.getConnection().close();
+            //connector.getConnection().close();
         } catch (SQLException ex) {
             System.out.println("Error" + ex.getMessage());
         }
@@ -81,7 +84,7 @@ public class DaoImplements implements ClienteInterface, MedicamentoInterface, Us
 
             resultSet.close();
             statement.close();
-            connector.getConnection().close();
+            //connector.getConnection().close();
         } catch (SQLException ex) {
             System.out.println("Error" + ex.getMessage());
         }
@@ -104,7 +107,7 @@ public class DaoImplements implements ClienteInterface, MedicamentoInterface, Us
             statement.executeUpdate();
 
             statement.close();
-            connector.getConnection().close();
+           // connector.getConnection().close();
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
@@ -122,7 +125,7 @@ public class DaoImplements implements ClienteInterface, MedicamentoInterface, Us
             statement.executeUpdate();
 
             statement.close();
-            connector.getConnection().close();
+            //connector.getConnection().close();
         } catch (Exception ex) {
             System.out.println("Error" + ex.getMessage());
         }
@@ -148,12 +151,11 @@ public class DaoImplements implements ClienteInterface, MedicamentoInterface, Us
             statement.executeUpdate();
 
             statement.close();
-            connector.getConnection().close();
+            //connector.getConnection().close();
         } catch (Exception ex) {
             System.out.println("Error" + ex.getMessage());
         }
     }
-
 
     @Override
     public boolean LoginUser(String user, String pass) {
@@ -193,7 +195,7 @@ public class DaoImplements implements ClienteInterface, MedicamentoInterface, Us
             statement.executeUpdate();
 
             statement.close();
-            connector.getConnection().close();
+            //connector.getConnection().close();
         } catch (Exception ex) {
             System.out.println("Error" + ex.getMessage());
         }
@@ -218,7 +220,7 @@ public class DaoImplements implements ClienteInterface, MedicamentoInterface, Us
 
             resultSet.close();
             statement.close();
-            connector.getConnection().close();
+            //connector.getConnection().close();
         } catch (SQLException ex) {
             System.out.println("Error" + ex.getMessage());
         }
@@ -241,7 +243,7 @@ public class DaoImplements implements ClienteInterface, MedicamentoInterface, Us
             statement.executeUpdate();
 
             statement.close();
-            connector.getConnection().close();
+            //connector.getConnection().close();
         } catch (Exception ex) {
             System.out.println("Error" + ex.getMessage());
         }
@@ -283,7 +285,7 @@ public class DaoImplements implements ClienteInterface, MedicamentoInterface, Us
             statement.executeUpdate();
 
             statement.close();
-            connector.getConnection().close();
+           // connector.getConnection().close();
         } catch (Exception ex) {
             System.out.println("Error" + ex.getMessage());
         }
@@ -307,7 +309,7 @@ public class DaoImplements implements ClienteInterface, MedicamentoInterface, Us
 
             resultSet.close();
             statement.close();
-            connector.getConnection().close();
+            //connector.getConnection().close();
         } catch (SQLException ex) {
             System.out.println("Error" + ex.getMessage());
         }
@@ -326,7 +328,7 @@ public class DaoImplements implements ClienteInterface, MedicamentoInterface, Us
             statement.executeUpdate();
 
             statement.close();
-            connector.getConnection().close();
+            //connector.getConnection().close();
         } catch (Exception ex) {
             System.out.println("Error" + ex.getMessage());
         }
@@ -335,32 +337,31 @@ public class DaoImplements implements ClienteInterface, MedicamentoInterface, Us
 
     @Override
     public MedicamentoModel findByNombre(String name) {
-        String sql = "select from medicamento where nombre = ?";
-        MedicamentoModel mm=null;
+        String sql = "select * from medicamento where nombre = '" + name +"';";
+        
         try {
-            PreparedStatement statement;
-            statement = connector.getConnection().prepareStatement(sql);
+            Statement statement;
+            statement = connector.getConnection().createStatement();
+
             ResultSet resultSet;
-            
-            statement.setString(1, name);
-                    
             resultSet = statement.executeQuery(sql);
-            
-            if (resultSet.next()){
+            System.out.println("llego aca resultSet");
+            if (resultSet.next()) {
+                System.out.println("Otla bandela en china");
                 mm = new MedicamentoModel(
-                   resultSet.getInt("id"),
-                   resultSet.getString("nombre"),
+                        resultSet.getInt("id"),
+                        resultSet.getString("nombre"),
                         resultSet.getInt("cantidad"),
                         resultSet.getInt("precio"),
                         resultSet.getString("receta")
-                   );
+                );
+                return mm;
             }
+
             
-            resultSet.close();
-            statement.close();
-            connector.getConnection().close();
+           // connector.getConnection().close();
         } catch (Exception ex) {
-            System.out.println("Error" + ex.getMessage());
+            System.out.println("Error123" + ex.getMessage());
         }
         return mm;
     }
