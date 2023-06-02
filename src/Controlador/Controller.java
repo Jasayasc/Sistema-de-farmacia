@@ -71,6 +71,7 @@ public class Controller implements ActionListener {
         
         registro.getRegister().addActionListener(this);
         registro.getSalir().addActionListener(this);
+        registro.getSalir().addActionListener(this);
         
         vistaUser.getAdmin().addActionListener(this);
         vistaUser.getPedido().addActionListener(this);
@@ -235,6 +236,10 @@ public class Controller implements ActionListener {
             ai.deleteAdmin(user);
             JOptionPane.showMessageDialog(null,"Eliminado con exito!");
             ea.setVisible(false);
+        }
+        if(e.getSource() == registro.getSalir()){
+            registro.setVisible(false);
+            login.setVisible(true);
         }
     }
 }
