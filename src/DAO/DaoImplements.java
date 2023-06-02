@@ -4,13 +4,12 @@ import Modelo.ClientModel;
 import Modelo.Connector;
 import Modelo.MedicamentoModel;
 import Modelo.Model;
-import Modelo.OfertaModel;
 import Modelo.UserModel;
 import Modelo.VentaModel;
 import java.util.ArrayList;
 import java.sql.*;
 
-public class DaoImplements implements ClienteInterface, MedicamentoInterface, OfertaInterface, UsuarioInterface, VentaInterface, AdmiInterface {
+public class DaoImplements implements ClienteInterface, MedicamentoInterface, UsuarioInterface, VentaInterface, AdmiInterface {
 
     Connector connector;
 
@@ -155,54 +154,6 @@ public class DaoImplements implements ClienteInterface, MedicamentoInterface, Of
         }
     }
 
-    @Override
-    public void createOferta(OfertaModel oferta) {
-        String sql = "inert into oferta values (?,?,?,?)";
-
-        try {
-
-            PreparedStatement statement;
-            statement = connector.getConnection().prepareStatement(sql);
-
-            statement.setString(1, oferta.getId() + "");
-            statement.setString(2, oferta.getId_prod() + "");
-            statement.setString(3, oferta.getPorcentaje() + "");
-            statement.setString(4, oferta.getDias() + "");
-
-            statement.executeUpdate();
-
-            statement.close();
-            connector.getConnection().close();
-        } catch (Exception ex) {
-            System.out.println("Error" + ex.getMessage());
-        }
-    }
-
-    @Override
-    public ArrayList<OfertaModel> findAllOfertas() {
-        String sql = "select * from oferta";
-        ArrayList<OfertaModel> ofertas = new ArrayList<>();
-        try {
-            Statement statement;
-            statement = connector.getConnection().createStatement();
-            ResultSet resultSet;
-            resultSet = statement.executeQuery(sql);
-
-            while (resultSet.next()) {
-
-                ofertas.add(new OfertaModel(resultSet.getInt("id"), resultSet.getInt("id"),
-                        resultSet.getFloat("porcentaje"), resultSet.getInt("dias")));
-
-            }
-
-            resultSet.close();
-            statement.close();
-            connector.getConnection().close();
-        } catch (SQLException ex) {
-            System.out.println("Error" + ex.getMessage());
-        }
-        return ofertas;
-    }
 
     @Override
     public boolean LoginUser(String user, String pass) {
@@ -228,17 +179,15 @@ public class DaoImplements implements ClienteInterface, MedicamentoInterface, Of
 
     @Override
     public void createVenta(VentaModel venta) {
-        String sql = "insert into venta values (?,?,?,?,?)";
+        String sql = "insert into venta (id_prod, nombre, cantidad, valor) values (?,?,?,?)";
 
         try {
 
             PreparedStatement statement;
             statement = connector.getConnection().prepareStatement(sql);
-
-            statement.setString(1, venta.getId() + "");
-            statement.setString(2, venta.getId_prod() + "");
-            statement.setString(3, venta.getDocumento() + "");
-            statement.setString(4, venta.getCantidad() + "");
+            statement.setString(1, venta.getId_prod() + "");
+            statement.setString(2, venta.getNombre());
+            statement.setString(3, venta.getCantidad() + "");
             statement.setString(4, venta.getValor() + "");
 
             statement.executeUpdate();
@@ -262,7 +211,7 @@ public class DaoImplements implements ClienteInterface, MedicamentoInterface, Of
 
             while (resultSet.next()) {
 
-                ventas.add(new VentaModel(resultSet.getInt("id"), resultSet.getInt("id_prod"), resultSet.getInt("documento"), resultSet.getInt("cantidad"),
+                ventas.add(new VentaModel(resultSet.getInt("id"), resultSet.getInt("id_prod"), resultSet.getString("nombre"), resultSet.getInt("cantidad"),
                         resultSet.getInt("valor")));
 
             }
@@ -341,7 +290,7 @@ public class DaoImplements implements ClienteInterface, MedicamentoInterface, Of
     }
 
     @Override
-    public ArrayList<Model> findAllAdmin(String user, String pass) {
+    public ArrayList<Model> findAllAdmin() {
         String sql = "select * from admin";
         ArrayList<Model> admins = new ArrayList<>();
         try {
@@ -382,6 +331,38 @@ public class DaoImplements implements ClienteInterface, MedicamentoInterface, Of
             System.out.println("Error" + ex.getMessage());
         }
 
+    }
+
+    @Override
+    public MedicamentoModel findByNombre(String name) {
+        String sql = "select from medicamento where nombre = ?";
+        MedicamentoModel mm=null;
+        try {
+            PreparedStatement statement;
+            statement = connector.getConnection().prepareStatement(sql);
+            ResultSet resultSet;
+            
+            statement.setString(1, name);
+                    
+            resultSet = statement.executeQuery(sql);
+            
+            if (resultSet.next()){
+                mm = new MedicamentoModel(
+                   resultSet.getInt("id"),
+                   resultSet.getString("nombre"),
+                        resultSet.getInt("cantidad"),
+                        resultSet.getInt("precio"),
+                        resultSet.getString("receta")
+                   );
+            }
+            
+            resultSet.close();
+            statement.close();
+            connector.getConnection().close();
+        } catch (Exception ex) {
+            System.out.println("Error" + ex.getMessage());
+        }
+        return mm;
     }
 
 }

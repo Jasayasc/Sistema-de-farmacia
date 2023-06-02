@@ -4,14 +4,14 @@ package Modelo;
 public class VentaModel implements Venta_interface{
     int id;
     int id_prod;
-    int documento;
+    String nombre;
     int cantidad;
     int valor;
 
-    public VentaModel(int id, int id_prod, int documento, int cantidad, int valor) {
+    public VentaModel(int id, int id_prod, String nombre, int cantidad, int valor) {
         this.id = id;
         this.id_prod = id_prod;
-        this.documento = documento;
+        this.nombre = nombre;
         this.cantidad = cantidad;
         this.valor = valor;
     }
@@ -27,8 +27,8 @@ public class VentaModel implements Venta_interface{
     }
 
     @Override
-    public int getDocumento() {
-        return documento;
+    public String getNombre() {
+        return nombre;
     }
 
     @Override

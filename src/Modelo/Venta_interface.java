@@ -14,7 +14,7 @@ public interface Venta_interface {
 
     public int getId_prod();
 
-    public int getDocumento();
+    public String getNombre();
 
     public int getCantidad();
 

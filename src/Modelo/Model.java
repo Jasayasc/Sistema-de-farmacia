@@ -8,6 +8,14 @@ public class Model {
         this.user = user;
         this.pass = pass;
     }
+
+    public String getUser() {
+        return user;
+    }
+
+    public String getPass() {
+        return pass;
+    }
     
     
 }

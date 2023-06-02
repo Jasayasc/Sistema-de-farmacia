@@ -4,6 +4,12 @@
  */
 package Vista;
 
+import DAO.DaoImplements;
+import DAO.MedicamentoInterface;
+import Modelo.MedicamentoModel;
+import java.util.ArrayList;
+import javax.swing.JButton;
+import javax.swing.JMenuItem;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -22,9 +28,21 @@ public class Vista_administador extends javax.swing.JFrame {
          setLocationRelativeTo(null);
         String[] titulos = new String[]{"ID","Nombre medicamento","Cantidad","Costo","Requiere receta"};
         dtm.setColumnIdentifiers(titulos);
+        llenar();
         Tabla_productos_admin.setModel(dtm);
     }
+    
+    public void llenar(){
+        MedicamentoInterface mi = new DaoImplements();
+        ArrayList<MedicamentoModel> medicamentos= mi.findAllMedicamentos();
+        for (MedicamentoModel medicamento : medicamentos) {
+            dtm.addRow(new Object[]{medicamento.getId(),medicamento.getNombre(),medicamento.getCantidad(),
+            medicamento.getPrecio(),medicamento.getReceta()});
+        }
+    }
 
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -37,17 +55,22 @@ public class Vista_administador extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabla_productos_admin = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        agregarProducto = new javax.swing.JButton();
+        eliminarProducto = new javax.swing.JButton();
+        modificarProducto = new javax.swing.JButton();
+        generarReporte = new javax.swing.JButton();
+        salir = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        crearAdmin = new javax.swing.JMenuItem();
+        eliminarAdmin = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(25, 118, 211));
 
         Tabla_productos_admin.setBackground(new java.awt.Color(255, 255, 255));
+        Tabla_productos_admin.setForeground(new java.awt.Color(0, 0, 0));
         Tabla_productos_admin.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -61,36 +84,36 @@ public class Vista_administador extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(Tabla_productos_admin);
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(25, 118, 211));
-        jButton1.setText("Agregar producto");
-        jButton1.setAutoscrolls(true);
+        agregarProducto.setBackground(new java.awt.Color(255, 255, 255));
+        agregarProducto.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        agregarProducto.setForeground(new java.awt.Color(25, 118, 211));
+        agregarProducto.setText("Agregar producto");
+        agregarProducto.setAutoscrolls(true);
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(25, 118, 211));
-        jButton2.setText("Eliminar producto");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        eliminarProducto.setBackground(new java.awt.Color(255, 255, 255));
+        eliminarProducto.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        eliminarProducto.setForeground(new java.awt.Color(25, 118, 211));
+        eliminarProducto.setText("Eliminar producto");
+        eliminarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                eliminarProductoActionPerformed(evt);
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
-        jButton3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(25, 118, 211));
-        jButton3.setText("Modificar producto");
+        modificarProducto.setBackground(new java.awt.Color(255, 255, 255));
+        modificarProducto.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        modificarProducto.setForeground(new java.awt.Color(25, 118, 211));
+        modificarProducto.setText("Modificar producto");
 
-        jButton4.setBackground(new java.awt.Color(255, 255, 255));
-        jButton4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(25, 118, 211));
-        jButton4.setText("Generar reporte");
+        generarReporte.setBackground(new java.awt.Color(255, 255, 255));
+        generarReporte.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        generarReporte.setForeground(new java.awt.Color(25, 118, 211));
+        generarReporte.setText("Generar reporte");
 
-        jButton5.setBackground(new java.awt.Color(255, 255, 255));
-        jButton5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(25, 118, 211));
-        jButton5.setText("Salir");
+        salir.setBackground(new java.awt.Color(255, 255, 255));
+        salir.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        salir.setForeground(new java.awt.Color(25, 118, 211));
+        salir.setText("Salir");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -102,16 +125,16 @@ public class Vista_administador extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 705, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(agregarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(44, 44, 44)
-                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(salir, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE))
+                            .addComponent(generarReporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(eliminarProducto, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(modificarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -121,16 +144,28 @@ public class Vista_administador extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
+                    .addComponent(agregarProducto)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton2)
-                        .addComponent(jButton3)))
+                        .addComponent(eliminarProducto)
+                        .addComponent(modificarProducto)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
-                .addContainerGap(32, Short.MAX_VALUE))
+                    .addComponent(generarReporte)
+                    .addComponent(salir))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
+
+        jMenu1.setText("Administrar Adminstradores");
+
+        crearAdmin.setText("Crear administrador");
+        jMenu1.add(crearAdmin);
+
+        eliminarAdmin.setText("Eliminar Administrador");
+        jMenu1.add(eliminarAdmin);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -140,15 +175,17 @@ public class Vista_administador extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    
+    
+    private void eliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarProductoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_eliminarProductoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -185,14 +222,49 @@ public class Vista_administador extends javax.swing.JFrame {
         });
     }
 
+    public JButton getAgregarProducto() {
+        return agregarProducto;
+    }
+
+    public JButton getEliminarProducto() {
+        return eliminarProducto;
+    }
+
+    public JButton getGenerarReporte() {
+        return generarReporte;
+    }
+
+    public JButton getModificarProducto() {
+        return modificarProducto;
+    }
+
+    public JButton getSalir() {
+        return salir;
+    }
+
+    public JMenuItem getCrearAdmin() {
+        return crearAdmin;
+    }
+
+    public JMenuItem getEliminarAdmin() {
+        return eliminarAdmin;
+    }
+
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Tabla_productos_admin;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton agregarProducto;
+    private javax.swing.JMenuItem crearAdmin;
+    private javax.swing.JMenuItem eliminarAdmin;
+    private javax.swing.JButton eliminarProducto;
+    private javax.swing.JButton generarReporte;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton modificarProducto;
+    private javax.swing.JButton salir;
     // End of variables declaration//GEN-END:variables
 }
