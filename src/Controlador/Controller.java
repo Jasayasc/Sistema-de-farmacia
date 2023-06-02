@@ -29,7 +29,7 @@ public class Controller implements ActionListener {
         login = new Login();
         vistaUser = new Vista_usuarios();
         registro = new Registro();
-        model = new Model();
+        //model = new Model();
         connector = new Connector();
 
         //Connection con = model.Conectar();
@@ -69,25 +69,26 @@ public class Controller implements ActionListener {
             int documento = Integer.parseInt(registro.getDocument().getText());
             String nombre = registro.getNombre().getText();
             String direccion = registro.getAddress().getText();
-            String correo = registro.getRegister().getText();
-            Pattern pattern = Pattern
+            String correo = registro.getEmail().getText();
+            /*Pattern pattern = Pattern
                 .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
                         + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
      
-         Matcher mather = pattern.matcher(correo);
-         
-         String user = registro.getUser().getText();
-         String pass = registro.getPass().getText();
- 
-        if (mather.find() == true) {
+         Matcher mather = pattern.matcher(correo);*/
+
+            String user = registro.getUser().getText();
+            String pass = registro.getPass();
+
+            //if (mather.find() == true) {
             ClienteInterface ci = new DaoImplements();
             UsuarioInterface ui = new DaoImplements();
-            ci.createClient(new ClientModel(documento,nombre,direccion,correo));
-            ui.createUser(new UserModel(documento, user,pass,false));
-        } else {
+            ci.createClient(new ClientModel(documento, nombre, direccion, correo));
+            ui.createUser(new UserModel(documento, user, pass));
+            JOptionPane.showMessageDialog(null, "Registrado con exito");
+            /*} else {
             JOptionPane.showMessageDialog(null,"Por favor ingrese un correo valido");
-        }
-            
+        }*/
+
         }
 
     }

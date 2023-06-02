@@ -5,14 +5,14 @@ public class UserModel implements Usuario {
     int documento;
     String user;
     String pass;
-    boolean permiso;
+    
 
-    public UserModel( int documento, String user, String pass, boolean permiso) {
+    public UserModel( int documento, String user, String pass) {
         
         this.documento = documento;
         this.user = user;
         this.pass = pass;
-        this.permiso = permiso;
+        
     }
 
 
@@ -32,10 +32,7 @@ public class UserModel implements Usuario {
         return pass;
     }
 
-    @Override
-    public boolean isPermiso() {
-        return permiso;
-    }
+    
 
     
 }

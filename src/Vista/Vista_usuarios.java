@@ -1,6 +1,10 @@
 
 package Vista;
 
+import DAO.DaoImplements;
+import DAO.MedicamentoInterface;
+import Modelo.MedicamentoModel;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -18,9 +22,19 @@ public class Vista_usuarios extends javax.swing.JFrame {
          setLocationRelativeTo(null);
         String[] titulos = new String[]{"ID","Nombre","Cantidad","Costo","Requiere receta"};
         dtm.setColumnIdentifiers(titulos);
+        llenar();
         Tabla_productos.setModel(dtm);
     }
 
+    public void llenar(){
+        MedicamentoInterface mi = new DaoImplements();
+       ArrayList<MedicamentoModel> medicamentos = mi.findAllMedicamentos();
+        for (MedicamentoModel medicamento : medicamentos) {
+            dtm.addColumn(new Object[]{medicamento.getId(),medicamento.getNombre(),medicamento.getCantidad(),
+            medicamento.getPrecio(),medicamento.getReceta()});
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,15 +60,20 @@ public class Vista_usuarios extends javax.swing.JFrame {
         Tabla_productos.setForeground(new java.awt.Color(0, 0, 0));
         Tabla_productos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID", "Nombre", "Cantidad Disponible", "Precio", "Requiere Formula"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         Tabla_productos.setColumnSelectionAllowed(true);
         Tabla_productos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Tabla_productos.setGridColor(new java.awt.Color(25, 118, 211));

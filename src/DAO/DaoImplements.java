@@ -3,13 +3,14 @@ package DAO;
 import Modelo.ClientModel;
 import Modelo.Connector;
 import Modelo.MedicamentoModel;
+import Modelo.Model;
 import Modelo.OfertaModel;
 import Modelo.UserModel;
 import Modelo.VentaModel;
 import java.util.ArrayList;
 import java.sql.*;
 
-public class DaoImplements implements ClienteInterface, MedicamentoInterface, OfertaInterface, UsuarioInterface, VentaInterface {
+public class DaoImplements implements ClienteInterface, MedicamentoInterface, OfertaInterface, UsuarioInterface, VentaInterface, AdmiInterface {
 
     Connector connector;
 
@@ -28,10 +29,7 @@ public class DaoImplements implements ClienteInterface, MedicamentoInterface, Of
             statement.setString(2, cliente.getNombre());
             statement.setString(3, cliente.getDireccion());
             statement.setString(4, cliente.getCorreo());
-            
-
             statement.executeUpdate();
-
             statement.close();
             connector.getConnection().close();
         } catch (Exception e) {
@@ -280,18 +278,16 @@ public class DaoImplements implements ClienteInterface, MedicamentoInterface, Of
 
     @Override
     public void createUser(UserModel user) {
-        String sql = "insert into user (documento,usuario,contraseña,permiso) values (?,?,?,?)";
+        String sql = "insert into usuario (documento,usuario,contraseña,permiso) values (?,?,?)";
 
         try {
 
             PreparedStatement statement;
             statement = connector.getConnection().prepareStatement(sql);
 
-            
             statement.setString(1, user.getDocumento() + "");
             statement.setString(2, user.getUser());
             statement.setString(3, user.getPass());
-            statement.setString(4, user.isPermiso()+ "");
 
             statement.executeUpdate();
 
@@ -300,6 +296,92 @@ public class DaoImplements implements ClienteInterface, MedicamentoInterface, Of
         } catch (Exception ex) {
             System.out.println("Error" + ex.getMessage());
         }
+    }
+
+    @Override
+    public boolean isAdmin(String user, String pass) {
+        String sql = "select * from admin";
+
+        try {
+            Statement statement;
+            statement = connector.getConnection().createStatement();
+            ResultSet resultSet;
+            resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                if (resultSet.getString("usuario").equals(user) && resultSet.getString("contraseña").equals(pass)) {
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+
+            System.out.println("Error" + e.getMessage());
+        }
+        return false;
+    }
+
+    @Override
+    public void createAdmin(String user, String pass) {
+        String sql = "insert into admin  values (?,?)";
+
+        try {
+
+            PreparedStatement statement;
+            statement = connector.getConnection().prepareStatement(sql);
+
+            statement.setString(1, user);
+            statement.setString(2, pass);
+
+            statement.executeUpdate();
+
+            statement.close();
+            connector.getConnection().close();
+        } catch (Exception ex) {
+            System.out.println("Error" + ex.getMessage());
+        }
+    }
+
+    @Override
+    public ArrayList<Model> findAllAdmin(String user, String pass) {
+        String sql = "select * from admin";
+        ArrayList<Model> admins = new ArrayList<>();
+        try {
+            Statement statement;
+            statement = connector.getConnection().createStatement();
+            ResultSet resultSet;
+            resultSet = statement.executeQuery(sql);
+
+            while (resultSet.next()) {
+
+                admins.add(new Model(resultSet.getString("usuario"), resultSet.getString("contraseña")));
+
+            }
+
+            resultSet.close();
+            statement.close();
+            connector.getConnection().close();
+        } catch (SQLException ex) {
+            System.out.println("Error" + ex.getMessage());
+        }
+        return admins;
+    }
+
+    @Override
+    public void deleteAdmin(String user) {
+        String sql = "delete from medicamento where usuario = ?";
+
+        try {
+            PreparedStatement statement;
+            statement = connector.getConnection().prepareStatement(sql);
+            statement.setString(1, user);
+
+            statement.executeUpdate();
+
+            statement.close();
+            connector.getConnection().close();
+        } catch (Exception ex) {
+            System.out.println("Error" + ex.getMessage());
+        }
+
     }
 
 }

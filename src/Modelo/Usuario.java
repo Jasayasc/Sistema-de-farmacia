@@ -16,5 +16,5 @@ public interface Usuario {
 
     String getPass();
 
-    boolean isPermiso();
+   
 }

@@ -41,11 +41,11 @@ public class Registro extends javax.swing.JFrame {
         name = new javax.swing.JTextField();
         email = new javax.swing.JTextField();
         user = new javax.swing.JTextField();
-        pass = new javax.swing.JTextField();
         address = new javax.swing.JTextField();
         register = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         document = new javax.swing.JTextField();
+        pass = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -89,9 +89,6 @@ public class Registro extends javax.swing.JFrame {
             }
         });
 
-        pass.setBackground(new java.awt.Color(255, 255, 255));
-        pass.setForeground(new java.awt.Color(0, 0, 0));
-
         address.setBackground(new java.awt.Color(255, 255, 255));
         address.setForeground(new java.awt.Color(0, 0, 0));
 
@@ -105,6 +102,9 @@ public class Registro extends javax.swing.JFrame {
         document.setBackground(new java.awt.Color(255, 255, 255));
         document.setForeground(new java.awt.Color(0, 0, 0));
 
+        pass.setBackground(new java.awt.Color(255, 255, 255));
+        pass.setForeground(new java.awt.Color(0, 0, 0));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -117,18 +117,19 @@ public class Registro extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(pass)
-                            .addComponent(name)
-                            .addComponent(email)
-                            .addComponent(user)
-                            .addComponent(address)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(document, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(pass, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(name)
+                                .addComponent(email)
+                                .addComponent(user)
+                                .addComponent(address)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(document, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)))
                         .addGap(6, 6, 6)))
                 .addContainerGap(26, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -212,8 +213,11 @@ public class Registro extends javax.swing.JFrame {
         return name;
     }
 
-    public JTextField getPass() {
-        return pass;
+    public String getPass() {
+        String passwd;
+        char[] arrayC = pass.getPassword();
+        passwd = new String(arrayC);
+        return passwd;
     }
 
     public JButton getRegister() {
@@ -224,8 +228,6 @@ public class Registro extends javax.swing.JFrame {
         return user;
     }
 
-    
-    
     /**
      * @param args the command line arguments
      */
@@ -275,7 +277,7 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField name;
-    private javax.swing.JTextField pass;
+    private javax.swing.JPasswordField pass;
     private javax.swing.JButton register;
     private javax.swing.JTextField user;
     // End of variables declaration//GEN-END:variables
