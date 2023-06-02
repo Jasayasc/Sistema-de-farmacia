@@ -33,6 +33,7 @@ public class Vista_administador extends javax.swing.JFrame {
     }
     
     public void llenar(){
+        dtm.setRowCount(0);
         MedicamentoInterface mi = new DaoImplements();
         ArrayList<MedicamentoModel> medicamentos= mi.findAllMedicamentos();
         for (MedicamentoModel medicamento : medicamentos) {
@@ -66,11 +67,10 @@ public class Vista_administador extends javax.swing.JFrame {
         eliminarAdmin = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(25, 118, 211));
 
-        Tabla_productos_admin.setBackground(new java.awt.Color(255, 255, 255));
-        Tabla_productos_admin.setForeground(new java.awt.Color(0, 0, 0));
         Tabla_productos_admin.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -84,13 +84,11 @@ public class Vista_administador extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(Tabla_productos_admin);
 
-        agregarProducto.setBackground(new java.awt.Color(255, 255, 255));
         agregarProducto.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         agregarProducto.setForeground(new java.awt.Color(25, 118, 211));
         agregarProducto.setText("Agregar producto");
         agregarProducto.setAutoscrolls(true);
 
-        eliminarProducto.setBackground(new java.awt.Color(255, 255, 255));
         eliminarProducto.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         eliminarProducto.setForeground(new java.awt.Color(25, 118, 211));
         eliminarProducto.setText("Eliminar producto");
@@ -100,17 +98,14 @@ public class Vista_administador extends javax.swing.JFrame {
             }
         });
 
-        modificarProducto.setBackground(new java.awt.Color(255, 255, 255));
         modificarProducto.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         modificarProducto.setForeground(new java.awt.Color(25, 118, 211));
         modificarProducto.setText("Modificar producto");
 
-        generarReporte.setBackground(new java.awt.Color(255, 255, 255));
         generarReporte.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         generarReporte.setForeground(new java.awt.Color(25, 118, 211));
         generarReporte.setText("Generar reporte");
 
-        salir.setBackground(new java.awt.Color(255, 255, 255));
         salir.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         salir.setForeground(new java.awt.Color(25, 118, 211));
         salir.setText("Salir");

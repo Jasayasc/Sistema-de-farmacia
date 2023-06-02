@@ -47,6 +47,7 @@ public class Agregar_producto extends javax.swing.JFrame {
         receta = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(25, 118, 211));
 
@@ -75,7 +76,6 @@ public class Agregar_producto extends javax.swing.JFrame {
         jLabel4.setText("Precio por unidad");
         jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        atras.setBackground(new java.awt.Color(255, 255, 255));
         atras.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         atras.setForeground(new java.awt.Color(25, 118, 211));
         atras.setText("Salir");
@@ -85,7 +85,6 @@ public class Agregar_producto extends javax.swing.JFrame {
             }
         });
 
-        agregar.setBackground(new java.awt.Color(255, 255, 255));
         agregar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         agregar.setForeground(new java.awt.Color(25, 118, 211));
         agregar.setText("Agregar producto");
@@ -96,26 +95,12 @@ public class Agregar_producto extends javax.swing.JFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Agregar");
 
-        id.setBackground(new java.awt.Color(255, 255, 255));
-        id.setForeground(new java.awt.Color(0, 0, 0));
-
-        nombre.setBackground(new java.awt.Color(255, 255, 255));
-        nombre.setForeground(new java.awt.Color(0, 0, 0));
-
-        cantidadDis.setBackground(new java.awt.Color(255, 255, 255));
-        cantidadDis.setForeground(new java.awt.Color(0, 0, 0));
-
-        precioU.setBackground(new java.awt.Color(255, 255, 255));
-        precioU.setForeground(new java.awt.Color(0, 0, 0));
-
         jLabel6.setBackground(new java.awt.Color(25, 118, 211));
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Requiere receta: ");
         jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        receta.setBackground(new java.awt.Color(255, 255, 255));
-        receta.setForeground(new java.awt.Color(0, 0, 0));
         receta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Si", "No" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

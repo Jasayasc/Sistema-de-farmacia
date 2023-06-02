@@ -43,6 +43,7 @@ public class Admin extends javax.swing.JFrame {
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(25, 118, 211));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -56,15 +57,7 @@ public class Admin extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Contraseña:");
 
-        adminUser.setBackground(new java.awt.Color(255, 255, 255));
-        adminUser.setForeground(new java.awt.Color(0, 0, 0));
-
-        adminPass.setBackground(new java.awt.Color(255, 255, 255));
-        adminPass.setForeground(new java.awt.Color(0, 0, 0));
-
-        adminLogin.setBackground(new java.awt.Color(255, 255, 255));
         adminLogin.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        adminLogin.setForeground(new java.awt.Color(0, 0, 0));
         adminLogin.setText("Iniciar Sesion");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -95,7 +88,7 @@ public class Admin extends javax.swing.JFrame {
                             .addComponent(adminPass, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(91, Short.MAX_VALUE)
+                        .addContainerGap(89, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addGap(68, 68, 68)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -120,7 +113,7 @@ public class Admin extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(adminPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(adminLogin)
                 .addGap(24, 24, 24))
         );

@@ -55,6 +55,7 @@ public class Eliminar_producto extends javax.swing.JFrame {
         eliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(25, 118, 211));
 
@@ -64,8 +65,6 @@ public class Eliminar_producto extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Eliminar");
 
-        Tabla_eliminar.setBackground(new java.awt.Color(255, 255, 255));
-        Tabla_eliminar.setForeground(new java.awt.Color(0, 0, 0));
         Tabla_eliminar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -79,12 +78,10 @@ public class Eliminar_producto extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(Tabla_eliminar);
 
-        salir.setBackground(new java.awt.Color(255, 255, 255));
         salir.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         salir.setForeground(new java.awt.Color(25, 118, 211));
         salir.setText("Salir");
 
-        eliminar.setBackground(new java.awt.Color(255, 255, 255));
         eliminar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         eliminar.setForeground(new java.awt.Color(25, 118, 211));
         eliminar.setText("Eliminar");

@@ -49,6 +49,7 @@ public class Registro extends javax.swing.JFrame {
         salir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(25, 118, 211));
 
@@ -76,24 +77,12 @@ public class Registro extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(199, 226, 255));
         jLabel7.setText("Correo");
 
-        name.setBackground(new java.awt.Color(255, 255, 255));
-        name.setForeground(new java.awt.Color(0, 0, 0));
-
-        email.setBackground(new java.awt.Color(255, 255, 255));
-        email.setForeground(new java.awt.Color(0, 0, 0));
-
-        user.setBackground(new java.awt.Color(255, 255, 255));
-        user.setForeground(new java.awt.Color(0, 0, 0));
         user.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userActionPerformed(evt);
             }
         });
 
-        address.setBackground(new java.awt.Color(255, 255, 255));
-        address.setForeground(new java.awt.Color(0, 0, 0));
-
-        register.setBackground(new java.awt.Color(255, 255, 255));
         register.setForeground(new java.awt.Color(25, 118, 211));
         register.setText("Registrarse");
         register.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -101,13 +90,6 @@ public class Registro extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(199, 226, 255));
         jLabel8.setText("Documento");
 
-        document.setBackground(new java.awt.Color(255, 255, 255));
-        document.setForeground(new java.awt.Color(0, 0, 0));
-
-        pass.setBackground(new java.awt.Color(255, 255, 255));
-        pass.setForeground(new java.awt.Color(0, 0, 0));
-
-        salir.setBackground(new java.awt.Color(255, 255, 255));
         salir.setForeground(new java.awt.Color(25, 118, 211));
         salir.setText("Salir");
         salir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

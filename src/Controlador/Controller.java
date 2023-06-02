@@ -205,6 +205,7 @@ public class Controller implements ActionListener {
             mi.insertMedicamento(new MedicamentoModel(id, a.getNombre().getText(), cantidad, precio, a.getReceta().getSelectedItem().toString()));
             JOptionPane.showMessageDialog(null, "Medicamento registrado con exito");
             a.setVisible(false);
+            v.llenar();
             v.setVisible(true);
         }
 
@@ -253,15 +254,16 @@ public class Controller implements ActionListener {
                 VentaInterface vi = new DaoImplements();
                 ArrayList<VentaModel> ventas = vi.findAllVentas();
                 int i=0;
-                outStream = new BufferedWriter(new FileWriter("./datosVentas.csv", true));
+                
                 while (i< ventas.size()) {
-                    
+                    outStream = new BufferedWriter(new FileWriter("./datosVentas.csv", true));
                     //System.out.println(venta.getNombre());
                     VentaModel venta = ventas.get(i);
-                    outStream.write(venta.getId() + "," + venta.getId_prod() + "," + venta.getNombre() + "," + venta.getCantidad() + "," + venta.getValor() + "\n");
+                    outStream.write(venta.getId() + ";" + venta.getId_prod() + ";" + venta.getNombre() + ";" + venta.getCantidad() + ";" + venta.getValor() + "\n");
                     i++;
+                    outStream.close();
                 }
-                outStream.close();
+                
                 JOptionPane.showMessageDialog(null, "Generado con exito");
             } catch (IOException ex) {
                 Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);

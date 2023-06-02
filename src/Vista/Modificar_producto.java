@@ -73,6 +73,7 @@ public class Modificar_producto extends javax.swing.JFrame {
         Tabla_modificar = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(25, 118, 211));
 
@@ -82,12 +83,10 @@ public class Modificar_producto extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Modificar");
 
-        salir.setBackground(new java.awt.Color(255, 255, 255));
         salir.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         salir.setForeground(new java.awt.Color(25, 118, 211));
         salir.setText("Salir");
 
-        modificar.setBackground(new java.awt.Color(255, 255, 255));
         modificar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         modificar.setForeground(new java.awt.Color(25, 118, 211));
         modificar.setText("Modificar");
@@ -97,8 +96,6 @@ public class Modificar_producto extends javax.swing.JFrame {
             }
         });
 
-        Tabla_modificar.setBackground(new java.awt.Color(255, 255, 255));
-        Tabla_modificar.setForeground(new java.awt.Color(0, 0, 0));
         Tabla_modificar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
