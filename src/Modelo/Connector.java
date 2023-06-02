@@ -8,7 +8,7 @@ import java.sql.*;
 
 public class Connector implements Connector_interface{
     private String userDatabase = "root";
-    private String passwordDatabase = "Montoya0324";
+    private String passwordDatabase = "12345";
     private String nameDatabase = "farmacia";
     
     private Connection connection = null;

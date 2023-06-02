@@ -24,14 +24,19 @@ import Vista.Vista_administador;
 import Vista.Vista_usuarios;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class Controller implements ActionListener {
-    
+
     Model model;
     Connector connector;
-    
+
     Login login;
     Vista_usuarios vistaUser;
     Registro registro;
@@ -40,14 +45,14 @@ public class Controller implements ActionListener {
     Agregar_producto a;
     Modificar_producto m;
     Eliminar_producto el;
-    
+
     AñadirAdmin aa;
-    
+
     EliminarAdmin ea;
-    
+
     MedicamentoInterface mi = new DaoImplements();
     AdmiInterface ai = new DaoImplements();
-    
+
     public Controller() {
         login = new Login();
         vistaUser = new Vista_usuarios();
@@ -56,7 +61,7 @@ public class Controller implements ActionListener {
         connector = new Connector();
         admin = new Admin();
         v = new Vista_administador();
-        
+
         a = new Agregar_producto();
         m = new Modificar_producto();
         el = new Eliminar_producto();
@@ -65,21 +70,21 @@ public class Controller implements ActionListener {
         ea = new EliminarAdmin();
         //Connection con = model.Conectar();
         login.setVisible(true);
-        
+
         login.getLoginButton().addActionListener(this);
         login.getRegistro().addActionListener(this);
-        
+
         registro.getRegister().addActionListener(this);
         registro.getSalir().addActionListener(this);
         registro.getSalir().addActionListener(this);
-        
+
         vistaUser.getAdmin().addActionListener(this);
         vistaUser.getPedido().addActionListener(this);
         //vistaUser.getAñadir().addActionListener(this);
         // vistaUser.getSalir().addActionListener(this);
 
         admin.getAdminLogin().addActionListener(this);
-        
+
         v.getAgregarProducto().addActionListener(this);
         v.getEliminarProducto().addActionListener(this);
         v.getModificarProducto().addActionListener(this);
@@ -87,27 +92,27 @@ public class Controller implements ActionListener {
         v.getGenerarReporte().addActionListener(this);
         v.getEliminarAdmin().addActionListener(this);
         v.getCrearAdmin().addActionListener(this);
-        
+
         a.getAgregar().addActionListener(this);
         a.getAtras().addActionListener(this);
-        
+
         el.getEliminar().addActionListener(this);
         el.getSalir().addActionListener(this);
-        
+
         m.getSalir().addActionListener(this);
-        
+
         aa.getAdminRegister().addActionListener(this);
         ea.getAdminDelete().addActionListener(this);
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == login.getLoginButton()) {
             UsuarioInterface ui = new DaoImplements();
-            
+
             String user;
             String pass;
-            
+
             user = login.getTxtUser().getText();
             char[] arrayC = login.getTxtPassword().getPassword();
             pass = new String(arrayC);
@@ -135,7 +140,7 @@ public class Controller implements ActionListener {
                         + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
      
          Matcher mather = pattern.matcher(correo);*/
-            
+
             String user = registro.getUser().getText();
             String pass = registro.getPass();
 
@@ -148,7 +153,7 @@ public class Controller implements ActionListener {
             /*} else {
             JOptionPane.showMessageDialog(null,"Por favor ingrese un correo valido");
         }*/
-            
+
         }
         if (e.getSource() == vistaUser.getAdmin()) {
             admin.setVisible(true);
@@ -186,28 +191,28 @@ public class Controller implements ActionListener {
             v.setVisible(false);
             vistaUser.setVisible(true);
         }
-        if(e.getSource() == v.getEliminarAdmin()){
-            
+        if (e.getSource() == v.getEliminarAdmin()) {
+
         }
-        if(e.getSource() == v.getCrearAdmin()){
+        if (e.getSource() == v.getCrearAdmin()) {
             aa.setVisible(true);
         }
         if (e.getSource() == a.getAgregar()) {
             int id = Integer.parseInt(a.getId().getText());
             int cantidad = Integer.parseInt(a.getCantidadDis().getText());
             int precio = Integer.parseInt(a.getPrecioU().getText());
-            
+
             mi.insertMedicamento(new MedicamentoModel(id, a.getNombre().getText(), cantidad, precio, a.getReceta().getSelectedItem().toString()));
             JOptionPane.showMessageDialog(null, "Medicamento registrado con exito");
             a.setVisible(false);
             v.setVisible(true);
         }
-        
+
         if (e.getSource() == a.getAtras()) {
             a.setVisible(false);
             v.setVisible(true);
         }
-        
+
         if (e.getSource() == el.getEliminar()) {
             mi.deleteMedicamento(el.getIdRow());
             JOptionPane.showMessageDialog(null, "Eliminado con exito");
@@ -218,28 +223,49 @@ public class Controller implements ActionListener {
             el.setVisible(false);
             v.setVisible(true);
         }
-        
+
         if (e.getSource() == m.getSalir()) {
             m.setVisible(false);
             v.setVisible(true);
         }
-        if(e.getSource() == aa.getAdminRegister()){
-            
+        if (e.getSource() == aa.getAdminRegister()) {
+
             String user = aa.getAdminUser().getText();
             String pass = aa.getAdminPass();
             ai.createAdmin(user, pass);
-            JOptionPane.showMessageDialog(null,"Agregado con exito!");
+            JOptionPane.showMessageDialog(null, "Agregado con exito!");
             aa.setVisible(false);
         }
-        if(e.getSource()== ea.getAdminDelete()){
+        if (e.getSource() == ea.getAdminDelete()) {
             String user = ea.getComboBox().getSelectedItem().toString();
             ai.deleteAdmin(user);
-            JOptionPane.showMessageDialog(null,"Eliminado con exito!");
+            JOptionPane.showMessageDialog(null, "Eliminado con exito!");
             ea.setVisible(false);
         }
-        if(e.getSource() == registro.getSalir()){
+        if (e.getSource() == registro.getSalir()) {
             registro.setVisible(false);
             login.setVisible(true);
+        }
+        if (e.getSource() == v.getGenerarReporte()) {
+            BufferedWriter outStream=null;
+            try {
+                
+                VentaInterface vi = new DaoImplements();
+                ArrayList<VentaModel> ventas = vi.findAllVentas();
+                int i=0;
+                outStream = new BufferedWriter(new FileWriter("./datosVentas.csv", true));
+                while (i< ventas.size()) {
+                    
+                    //System.out.println(venta.getNombre());
+                    VentaModel venta = ventas.get(i);
+                    outStream.write(venta.getId() + "," + venta.getId_prod() + "," + venta.getNombre() + "," + venta.getCantidad() + "," + venta.getValor() + "\n");
+                    i++;
+                }
+                outStream.close();
+                JOptionPane.showMessageDialog(null, "Generado con exito");
+            } catch (IOException ex) {
+                Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 }

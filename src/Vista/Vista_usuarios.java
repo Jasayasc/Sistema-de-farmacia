@@ -75,13 +75,10 @@ public class Vista_usuarios extends javax.swing.JFrame {
         jLabel1.setText("Cantidad a llevar:");
         jLabel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        cantLlevar.setBackground(new java.awt.Color(255, 255, 255));
         cantLlevar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        cantLlevar.setForeground(new java.awt.Color(0, 0, 0));
         cantLlevar.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         cantLlevar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        salir.setBackground(new java.awt.Color(255, 255, 255));
         salir.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         salir.setForeground(new java.awt.Color(25, 118, 211));
         salir.setText("Salir");
@@ -91,7 +88,6 @@ public class Vista_usuarios extends javax.swing.JFrame {
             }
         });
 
-        pedido.setBackground(new java.awt.Color(255, 255, 255));
         pedido.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         pedido.setForeground(new java.awt.Color(25, 118, 211));
         pedido.setText("Hacer pedido");
@@ -100,9 +96,7 @@ public class Vista_usuarios extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Medicamento: ");
 
-        comboBox.setBackground(new java.awt.Color(255, 255, 255));
         comboBox.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        comboBox.setForeground(new java.awt.Color(0, 0, 0));
         comboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxActionPerformed(evt);
@@ -146,11 +140,9 @@ public class Vista_usuarios extends javax.swing.JFrame {
         total1.setEditable(false);
         total1.setBackground(new java.awt.Color(255, 255, 255));
         total1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        total1.setForeground(new java.awt.Color(0, 0, 0));
         total1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         total1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        añadir.setBackground(new java.awt.Color(255, 255, 255));
         añadir.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         añadir.setForeground(new java.awt.Color(25, 118, 211));
         añadir.setText("Añadir");
@@ -241,7 +233,7 @@ public class Vista_usuarios extends javax.swing.JFrame {
         );
 
         jMenuBar1.setBackground(new java.awt.Color(25, 118, 211));
-        jMenuBar1.setForeground(new java.awt.Color(0, 51, 255));
+        jMenuBar1.setForeground(new java.awt.Color(255, 255, 255));
 
         jMenu1.setText("Administrador");
         jMenu1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -294,6 +286,7 @@ public class Vista_usuarios extends javax.swing.JFrame {
 
     private void añadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añadirActionPerformed
         // TODO add your handling code here:
+        total1.setText(String.valueOf(0));
         String nombre = comboBox.getSelectedItem().toString();
         System.out.println(nombre);
         MedicamentoModel mm = mi.findByNombre(nombre);
@@ -301,8 +294,8 @@ public class Vista_usuarios extends javax.swing.JFrame {
         int valor = mm.getPrecio() * cantidadLLevar;
         ventas.add(new VentaModel(0, mm.getId(), mm.getNombre(), cantidadLLevar, valor));
         int valorTotal = Integer.parseInt(total1.getText()) + valor;
-        total1.setText(valorTotal + "");
-        cantLlevar.setText(String.valueOf(0));
+        total1.setText(String.valueOf(valorTotal));
+        cantLlevar.setText("");
     }//GEN-LAST:event_añadirActionPerformed
 
     public ArrayList<VentaModel> getVentas() {
